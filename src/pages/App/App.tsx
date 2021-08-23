@@ -21,13 +21,13 @@ interface Data {
 [];
 
 interface Img {
-  name:string
+  name: string;
 }
 
 const App: FC = () => {
   const [data, setData] = useState<Data[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
-  const [imgPrev, setImgPrev] = useState(null);
+  const [imgPrev, setImgPrev] = useState<string>("");
 
   const url = "https://fakestoreapi.com/products";
 
@@ -59,23 +59,16 @@ const App: FC = () => {
     } as Info);
   };
   const hanldeImg = (event: any) => {
-    const uploadImg = event.target.files[0]
-    const types = ["image/png","image/jpeg","image/jpg"]
+    const uploadImg = event.target.files[0];
+    const types = ["image/png", "image/jpeg", "image/jpg"];
 
     if (uploadImg && types.includes(uploadImg.type)) {
-      let reader = new FileReader()
-      reader.onloadend= ()=>{
-        setImgPrev(reader.result)
-        console.log(reader)
-      }
-      reader.readAsDataURL(uploadImg)
-      console.log(reader)
-
-    }else{
-      console.log("no selected")
-    }
-
-    // console.log(img);
+      let reader = new FileReader();
+      reader.onloadend = (event) => {
+        setImgPrev(event?.target?.result);
+      };
+      reader.readAsDataURL(uploadImg);
+    } 
   };
 
   useEffect(() => {
@@ -88,15 +81,15 @@ const App: FC = () => {
     <>
       <div>
         <h1>FakeApi Store</h1>
-        <div style={
-          {
+        <div
+          style={{
             width: "100px",
             height: "100px",
-            background: imgPrev ? `url("${imgPrev}") no-repeat center/cover` : "black"
-          }
-        }>
-
-        </div>
+            background: imgPrev
+              ? `url("${imgPrev}") no-repeat center/cover`
+              : "black",
+          }}
+        ></div>
         <form onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
