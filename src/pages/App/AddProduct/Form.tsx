@@ -43,6 +43,17 @@ const Form: FC = () => {
   };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // setData([
+    //   {
+    //     ...info,
+    //     id: data.length + 1,
+    //   },
+    //   ...data,
+    // ]);
+    // setInfo({
+    //   title: "",
+    // } as Info);
   };
   console.log(data);
   return (
