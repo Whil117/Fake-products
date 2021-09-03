@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, FormEvent, useEffect, useState } from "react";
-
+import { FC, useEffect, useState } from "react";
+import ButtonBuy from "../../components/ButtonBuy";
 interface Info {
   id: number;
   title: string;
@@ -26,8 +26,6 @@ interface Img {
 
 const App: FC = () => {
   const [data, setData] = useState<Data[]>([]);
-  const [info, setInfo] = useState<Info>({} as Info);
-  // const [imgPrev, setImgPrev] = useState<string>("");
 
   const url = "https://fakestoreapi.com/products";
 
@@ -57,7 +55,7 @@ const App: FC = () => {
               width: "291px",
               height: "405px",
               background: "white",
-              borderRadius: "5px"
+              borderRadius: "5px",
             }}
           >
             <img
@@ -65,28 +63,14 @@ const App: FC = () => {
               src={product.image}
               alt={product.title}
             />
-            <h4 style={{ width: "400px" }}>{product.title.slice(0,20)}...</h4>
+            <h4 style={{ width: "400px" }}>{product.title.slice(0, 20)}...</h4>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <p>{product.category}</p>
               <p>
                 <b>${product.price}</b>
               </p>
             </div>
-            <button
-              style={{
-                border: "none",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "10px",
-                width: "250px",
-                height: "34px",
-                background: "#48C4EC",
-                borderRadius: "5px",
-              }}
-            >
-              Buy
-            </button>
+            <ButtonBuy title="Buy" size="md" color="primary"  disabledShadow/>
           </div>
         ))}
       </div>
